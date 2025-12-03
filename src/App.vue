@@ -30,8 +30,14 @@
 import Board from './components/Board.vue';
 import Commands from './components/Commands.vue';
 import Info from './components/Info.vue';
+import { useMastermind } from './utils/useMastermind';
 
 
+const mastermind = useMastermind()
+
+console.log(mastermind);
+
+ 
 </script>
 
 <style scoped>
