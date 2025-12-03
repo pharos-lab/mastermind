@@ -21,7 +21,7 @@
 
             <Commands />
 
-            <Board />
+            <Board :game="mastermind.game.value"/>
         </div>
     </div>
 </template>
@@ -37,10 +37,6 @@ import { useMastermind } from './utils/useMastermind';
 const mastermind = useMastermind()
 
 console.log(mastermind);
-
-provide('mastermind', mastermind)
-
- 
 </script>
 
 <style scoped>
