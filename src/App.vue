@@ -19,7 +19,7 @@
         <div class="mastermind flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] gap-4 p-4 lg:p-8 bg-slate-50 grow">
             <Info :profile="mastermind.profile.value" :game="mastermind.game.value" />
 
-            <Commands />
+            <Commands :game="mastermind.game.value" @add-color="mastermind.addColor" @resetColor="mastermind.resetGame" @undoColor="mastermind.undoColor"/>
 
             <Board :game="mastermind.game.value"/>
         </div>
@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import { provide } from 'vue';
 import Board from './components/Board.vue';
 import Commands from './components/Commands.vue';
 import Info from './components/Info.vue';
@@ -35,6 +34,7 @@ import { useMastermind } from './utils/useMastermind';
 
 
 const mastermind = useMastermind()
+
 
 console.log(mastermind);
 </script>

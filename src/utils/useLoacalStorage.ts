@@ -76,14 +76,14 @@ export function useLocalStorage() {
     loadFromStorage(GAME_KEY, createDefaultGame(profile.value.name))
   );
 
-  // Sauvegarder automatiquement à chaque changement
-  watch(profile, (newProfile) => {
-    saveToStorage(PROFILE_KEY, newProfile);
-  }, { deep: true });
+  // // Sauvegarder automatiquement à chaque changement
+  // watch(profile, (newProfile) => {
+  //   saveToStorage(PROFILE_KEY, newProfile);
+  // }, { deep: true });
 
-  watch(game, (newGame) => {
-    saveToStorage(GAME_KEY, newGame);
-  }, { deep: true });
+  // watch(game, (newGame) => {
+  //   saveToStorage(GAME_KEY, newGame);
+  // }, { deep: true });
 
   // Utilitaires
   function resetProfile(): void {
