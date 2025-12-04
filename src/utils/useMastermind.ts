@@ -11,6 +11,16 @@ export function useMastermind() {
             generateSecretCode()
         }
     }
+
+    function newGame() {
+      storage.game.value = createDefaultGame(storage.profile.value.name)
+      storage.game.value.code = generateSecretCode()
+    }
+
+    function abandonGame() {
+      storage.game.value = createDefaultGame(storage.profile.value.name)
+      storage.game.value.code = generateSecretCode()
+    }
     
     function generateSecretCode(): Code {
       const code: Code = [];
@@ -118,5 +128,5 @@ export function useMastermind() {
         return true;
       }
 
-    return { ...storage, addColor, undoColor, resetColor, generateSecretCode, calculateFeedback, submitColors, initiate }
+    return { ...storage, addColor, undoColor, resetColor, generateSecretCode, calculateFeedback, submitColors, initiate, newGame, abandonGame }
 }

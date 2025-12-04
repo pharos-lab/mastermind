@@ -47,7 +47,7 @@
                     v-if="game.value.status != 'playing'" 
                     variant="outline" 
                     class="border-green-500 hover:bg-green-100"
-                    @click="game.value = createDefaultGame(profile.name)"
+                    @click="$emit('newGame')"
                 >
                     Nouvelle partie
                 </Button>
@@ -69,7 +69,7 @@
                             </DialogClose>
                             
                             <DialogClose>
-                                <Button variant="destructive" @click="game.value = createDefaultGame(profile.name)">
+                                <Button variant="destructive" @click="$emit('abandonGame')">
                                     Abandonner
                                 </Button>
                             </DialogClose>
