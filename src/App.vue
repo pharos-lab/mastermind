@@ -43,9 +43,11 @@ import { useMastermind } from './utils/useMastermind';
 
 
 const mastermind = useMastermind()
-const secretCode = mastermind.generateSecretCode()
 
-console.log(secretCode);
+mastermind.initiate()
+
+console.log(mastermind.game.value.code);
+
 
 </script>
 

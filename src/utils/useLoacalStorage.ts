@@ -1,25 +1,7 @@
 // src/composables/useLocalStorage.ts
 
 import { ref, watch } from 'vue';
-import type { Color, Attempt } from '../types';
-
-export interface Profile {
-  name: string;
-  totalGames: number;
-  gamesWon: number;
-  gamesLost: number;
-}
-
-export interface Game {
-  player: string;
-  score: number;
-  code: Color[];
-  attempts:Attempt[];
-  currentAttempt: Color[];
-  status: 'playing' | 'won' | 'lost' | '';
-  maxAttempts: number;
-  currentAttemptIndex: number;
-}
+import type { Profile, Game } from '../types';
 
 const PROFILE_KEY = 'mastermind_profile';
 const GAME_KEY = 'mastermind_game';
@@ -27,9 +9,9 @@ const GAME_KEY = 'mastermind_game';
 function createDefaultProfile(): Profile {
   return {
     name: 'John Doe',
-    totalGames: 0,
-    gamesWon: 0,
-    gamesLost: 0,
+    // totalGames: 0,
+    // gamesWon: 0,
+    // gamesLost: 0,
   };
 }
 

@@ -1,10 +1,24 @@
 <template>
     <section class="info order-1 p-4 ring ring-slate-500/50 shadow-lg rounded-lg">
         <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="text-center">
-                <p class="text-sm text-slate-600">Joueur</p>
-                <p class="font-semibold text-lg">{{ profile.name }}</p>
-            </div>
+            <p class="font-semibold text-lg flex gap-2 items-center">
+                <span>{{ profile.name }}</span>
+                <Dialog>
+                    <DialogTrigger>
+                        <Edit class="text-yellow-500 cursor-pointer"></Edit>
+                    </DialogTrigger>
+
+                    <DialogContent>
+                        <DialogTitle>Modifier le nom</DialogTitle>
+                        <input type="text" v-model="profile.name" />
+
+                        <DialogClose>
+                            <Button>Valider</Button>
+                        </DialogClose>
+                    </DialogContent>
+                </Dialog>
+            </p>
+
             <div class="text-center">
                 <p class="text-sm text-slate-600">Score</p>
                 <p class="font-semibold text-lg">{{ game.score }}</p>
@@ -49,7 +63,10 @@
 </template>
 
 <script setup lang="ts">
+import { Edit } from 'lucide-vue-next';
 import type { Profile, Game } from '../types'
+import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from './ui/dialog';
+import { Button } from './ui/button';
 
 interface Props {
     profile: Profile;

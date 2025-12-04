@@ -6,6 +6,11 @@ export function useMastermind() {
     const storage = useLocalStorage()
     const AVAILABLE_COLORS: Color[] = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
+    function initiate() {
+        if (!storage.game.value.code.length) {
+            generateSecretCode()
+        }
+    }
     
     function generateSecretCode(): Code {
       const code: Code = [];
@@ -116,5 +121,5 @@ export function useMastermind() {
         return true;
       }
 
-    return { ...storage, addColor, undoColor, resetColor, generateSecretCode, calculateFeedback, submitColors }
+    return { ...storage, addColor, undoColor, resetColor, generateSecretCode, calculateFeedback, submitColors, initiate }
 }
