@@ -16,7 +16,7 @@
             </div>
         </header>
 
-        <div class="mastermind flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] gap-4 p-4 lg:p-8 bg-slate-50 grow">
+        <div class="mastermind flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] gap-4 p-4 lg:p-6 bg-slate-50 grow">
             <Info 
                 :profile="mastermind.profile.value" 
                 :game="mastermind.game" 

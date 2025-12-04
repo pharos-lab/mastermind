@@ -3,10 +3,10 @@
         <div class="combination flex w-96 mx-auto ring ring-slate-500/50 rounded-lg shadow-lg overflow-hidden">
             <div 
                 v-show="game.value.showCode" 
-                class="code flex grow gap-2 justify-between items-center py-2 px-4"
+                class="code flex grow gap-2 justify-between items-center py-1 px-4"
             >
                 <div 
-                    class="color size-8 rounded-full" 
+                    class="color size-7 rounded-full" 
                     v-for="color in game.value.code" 
                     :class="getColorClass(color)"
                 >
@@ -16,17 +16,17 @@
 
             <div 
                 v-show="!game.value.showCode" 
-                class="code flex grow gap-2 justify-between items-center py-2 px-4"
+                class="code flex grow gap-2 justify-between items-center py-1 px-4"
             >
                 <div 
-                    class="color size-8 rounded-full bg-slate-200" 
+                    class="color size-7 rounded-full bg-slate-200" 
                     v-for="n in 4"
                 >
                 </div>
 
             </div>
 
-            <div class="see-code size-14 flex items-center justify-center bg-emerald-500/50">
+            <div class="see-code size-13 flex items-center justify-center bg-emerald-500/50">
                 <Eye 
                     v-show="!game.value.showCode" 
                     class="text-white cursor-pointer size-8" 
@@ -48,15 +48,15 @@
                 class="attempt flex" 
                 v-for="n in 11 - game.value.attempts.length"
             >
-                <div class="code flex grow gap-2 justify-between items-center py-2 px-4">
+                <div class="code flex grow gap-2 justify-between items-center py-1 px-4">
                     <div 
-                        class="color size-8 rounded-full bg-slate-200" 
+                        class="color size-7 rounded-full bg-slate-200" 
                         v-for="n in 4"
                     >
                     </div>
                 </div>
 
-                <div class="results p-2 grid grid-cols-2 gap-2">
+                <div class="results p-2 grid grid-cols-2 gap-1">
                     <div 
                         class="result size-4 rounded-full bg-slate-300" 
                         v-for="n in 4"
@@ -66,22 +66,22 @@
 
             <!-- CURRENT ATTEMPT -->
             <div class="attempt flex">
-                <div class="code flex grow gap-2 justify-between items-center py-2 px-4">
+                <div class="code flex grow gap-2 justify-between items-center py-1 px-4">
                     <div 
-                        class="color size-8 rounded-full" 
+                        class="color size-7 rounded-full" 
                         v-for="color in game.value.currentAttempt" 
                         :class="getColorClass(color)"
                     >
                     </div>
 
                     <div 
-                        class="color size-8 rounded-full bg-slate-200" 
+                        class="color size-7 rounded-full bg-slate-200" 
                         v-for="n in 4 - game.value.currentAttempt.length"
                     >
                     </div>
                 </div>
 
-                <div class="results p-2 grid grid-cols-2 gap-2">
+                <div class="results p-2 grid grid-cols-2 gap-1">
                     <div 
                         class="result size-4 rounded-full bg-slate-300" 
                         v-for="n in 4"
@@ -91,9 +91,9 @@
 
             <!-- ALREADY ATTEMPT -->
             <div class="attempt flex" v-for="(attempt) in game.value.attempts">
-                <div class="code flex grow gap-2 justify-between items-center py-2 px-4">
+                <div class="code flex grow gap-2 justify-between items-center py-1 px-4">
                     <div 
-                        class="color size-8 rounded-full" 
+                        class="color size-7 rounded-full" 
                         v-for="color in attempt.code"
                         :class="getColorClass(color)"
                     >
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="results p-2 grid grid-cols-2 gap-2">
+                <div class="results p-2 grid grid-cols-2 gap-1">
                     <div 
                         class="result size-4 rounded-full bg-slate-800" 
                         v-for="exactMatch in attempt.feedback.exactMatches"
