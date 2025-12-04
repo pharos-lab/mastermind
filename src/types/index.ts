@@ -22,6 +22,10 @@ export interface Game {
 
 export interface Attempt {
     code: Color[];
+    feedback: Feedback
+}
+
+export interface Feedback {
     exactMatches: number;
-    colorMatches: number;
+    colorMatches: number;    
 }

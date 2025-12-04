@@ -1,4 +1,4 @@
-import type { Code, Color } from "../types"
+import type { Code, Color, Feedback } from "../types"
 import { useLocalStorage } from "./useLoacalStorage"
 
 export function useMastermind() {
@@ -16,9 +16,43 @@ export function useMastermind() {
       }
       
       storage.game.value.code = code;
-      
+
       return code;
     }
+
+    function calculateFeedback(secretCode: Code, attempt: Code): Feedback {
+        if (secretCode.length !== attempt.length) {
+          throw new Error('Secret code and attempt must have the same length');
+        }
+      
+        const secretCopy = [...secretCode] as unknown[];
+        const attemptCopy = [...attempt] as unknown[];
+        
+        let exactMatches = 0;
+        let colorMatches = 0;
+      
+        for (let i = 0; i < secretCopy.length; i++) {
+          if (secretCopy[i] === attemptCopy[i]) {
+            exactMatches++;
+            // Marquer comme utilisé avec null
+            secretCopy[i] = null;
+            attemptCopy[i] = null;
+          }
+        }
+      
+        for (let i = 0; i < attemptCopy.length; i++) {
+          if (attemptCopy[i] !== null) {
+            const colorIndex = secretCopy.indexOf(attemptCopy[i]);
+            if (colorIndex !== -1) {
+              colorMatches++;
+              // Marquer comme utilisé
+              secretCopy[colorIndex] = null as any;
+            }
+          }
+        }
+      
+        return { exactMatches, colorMatches };
+      }
 
     function addColor(color:Color) {
         console.log(`add color ${color} to current Attempts!`);
@@ -41,5 +75,5 @@ export function useMastermind() {
         storage.game.value.currentAttempt = []
     }
 
-    return { ...storage, addColor, undoColor, resetColor, generateSecretCode }
+    return { ...storage, addColor, undoColor, resetColor, generateSecretCode, calculateFeedback }
 }
