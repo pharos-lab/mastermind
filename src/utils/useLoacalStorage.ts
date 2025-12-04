@@ -25,6 +25,7 @@ function createDefaultGame(playerName: string): Game {
     status: '',
     maxAttempts: 10,
     currentAttemptIndex: 0,
+    showCode: false,
   };
 }
 

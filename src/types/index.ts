@@ -18,6 +18,7 @@ export interface Game {
     status: 'playing' | 'won' | 'lost' | '';
     maxAttempts: number;
     currentAttemptIndex: number;
+    showCode: boolean
 }
 
 export interface Attempt {

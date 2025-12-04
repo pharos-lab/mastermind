@@ -21,7 +21,7 @@
 
             <div class="text-center">
                 <p class="text-sm text-slate-600">Score</p>
-                <p class="font-semibold text-lg">{{ game.score }}</p>
+                <p class="font-semibold text-lg">{{ game.value.score }}</p>
             </div>
         </div>
 
@@ -34,9 +34,9 @@
             </div>
         </div> -->
 
-        <div v-if="game.status" class="border-t pt-4">
+        <div v-if="game.value.status" class="border-t pt-4">
             <div class="text-center">
-                <p v-if="game.status === 'won'" class="text-green-600 font-bold">
+                <p v-if="game.value.status === 'won'" class="text-green-600 font-bold">
                     🎉 Victoire !
                 </p>
                 <p v-else class="text-red-600 font-bold">
@@ -65,12 +65,13 @@
 <script setup lang="ts">
 import { Edit } from 'lucide-vue-next';
 import type { Profile, Game } from '../types'
-import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from './ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogClose } from './ui/dialog';
 import { Button } from './ui/button';
+import type { Ref } from 'vue';
 
 interface Props {
     profile: Profile;
-    game: Game;
+    game: Ref<Game>;
     // isPlaying: boolean;
     // attemptsRemaining: number;
 }

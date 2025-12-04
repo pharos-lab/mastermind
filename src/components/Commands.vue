@@ -18,10 +18,11 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue';
 import type { Game } from '../types'
 
 interface Props {
-    game: Game;
+    game: Ref<Game>;
 }
 
 defineProps<Props>();
