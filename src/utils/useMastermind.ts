@@ -55,7 +55,7 @@ export function useMastermind() {
             }
           }
         }
-      
+
         return { exactMatches, colorMatches };
     }
 
@@ -81,15 +81,13 @@ export function useMastermind() {
           return false;
         }
       
-        // if (storage.game.value.status !== 'playing') {
-        //   console.warn('storage.game.value is not in playing state');
-        //   return false;
-        // }
+        if (storage.game.value.status !== 'playing') {
+          console.warn('The game is not in playing state');
+          return false;
+        }
       
-        // Calculer le feedback
         const feedback = calculateFeedback(storage.game.value.code, storage.game.value.currentAttempt);
       
-        // Créer l'objet attempt
         const attempt = {
           code: [...storage.game.value.currentAttempt],
           feedback: {
@@ -99,19 +97,18 @@ export function useMastermind() {
         };
       
         storage.game.value.attempts.unshift(attempt);
-        // storage.game.value.currentAttemptIndex++;
       
-        // if (feedback.exactMatches === storage.game.value.code.length) {
-        //   storage.game.value.status = 'won';
-        //   // Calculer score bonus (plus de points si moins de tentatives)
-        //   const bonus = (storage.game.value.maxAttempts - storage.game.value.currentAttemptIndex) * 10;
-        //   storage.game.value.score = 100 + bonus;
-        // }
-        // // Vérifier défaite
-        // else if (storage.game.value.currentAttemptIndex >= storage.game.value.maxAttempts) {
-        //   storage.game.value.status = 'lost';
-        //   storage.game.value.score = 0;
-        // }
+        if (feedback.exactMatches === storage.game.value.code.length) {
+          storage.game.value.status = 'won';
+          // Calculer score bonus (plus de points si moins de tentatives)
+          const bonus = (storage.game.value.maxAttempts - storage.game.value.attempts.length) * 10;
+          storage.game.value.score = 100 + bonus;
+        }
+        // Vérifier défaite
+        else if (storage.game.value.attempts.length == storage.game.value.maxAttempts) {
+          storage.game.value.status = 'lost';
+          storage.game.value.score = 0;
+        }
       
         // Réinitialiser la tentative actuelle
         storage.game.value.currentAttempt = [];

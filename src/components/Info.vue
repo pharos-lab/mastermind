@@ -39,7 +39,7 @@
                 <p v-if="game.value.status === 'won'" class="text-green-600 font-bold">
                     🎉 Victoire !
                 </p>
-                <p v-else class="text-red-600 font-bold">
+                <p v-else-if="game.value.status === 'lost'" class="text-red-600 font-bold">
                     😔 Défaite
                 </p>
             </div>

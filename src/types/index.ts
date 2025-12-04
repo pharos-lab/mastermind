@@ -17,7 +17,6 @@ export interface Game {
     currentAttempt: Color[];
     status: 'playing' | 'won' | 'lost' | '';
     maxAttempts: number;
-    currentAttemptIndex: number;
     showCode: boolean
 }
 

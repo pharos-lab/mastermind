@@ -1,18 +1,18 @@
 <template>
     <section class="commands order-3 lg:order-2 lg:order-none lg:row-start-2 p-4 ring ring-slate-500/50 shadow-lg rounded-lg space-y-8">
         <div class="colors flex gap-2 justify-between">
-            <button class="size-6 lg:size-10 bg-red-500 rounded cursor-pointer" @click="$emit('addColor', 'red')"></button>
-            <button class="size-6 lg:size-10 bg-orange-500 rounded cursor-pointer" @click="$emit('addColor', 'orange')"></button>
-            <button class="size-6 lg:size-10 bg-yellow-500 rounded cursor-pointer" @click="$emit('addColor', 'yellow')"></button>
-            <button class="size-6 lg:size-10 bg-green-500 rounded cursor-pointer"  @click="$emit('addColor', 'green')"></button>
-            <button class="size-6 lg:size-10 bg-blue-500 rounded cursor-pointer" @click="$emit('addColor', 'blue')"></button>
-            <button class="size-6 lg:size-10 bg-purple-500 rounded cursor-pointer"  @click="$emit('addColor', 'purple')"></button>
+            <button class="size-6 lg:size-10 bg-red-500 rounded cursor-pointer disabled:bg-red-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('addColor', 'red')"></button>
+            <button class="size-6 lg:size-10 bg-orange-500 rounded cursor-pointer disabled:bg-orange-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('addColor', 'orange')"></button>
+            <button class="size-6 lg:size-10 bg-yellow-500 rounded cursor-pointer disabled:bg-yellow-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('addColor', 'yellow')"></button>
+            <button class="size-6 lg:size-10 bg-green-500 rounded cursor-pointer disabled:bg-green-500/50 disabled:cursor-not-allowed"  :disabled="game.value.status != 'playing'" @click="$emit('addColor', 'green')"></button>
+            <button class="size-6 lg:size-10 bg-blue-500 rounded cursor-pointer disabled:bg-blue-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('addColor', 'blue')"></button>
+            <button class="size-6 lg:size-10 bg-purple-500 rounded cursor-pointer disabled:bg-purple-500/50 disabled:cursor-not-allowed"  :disabled="game.value.status != 'playing'" @click="$emit('addColor', 'purple')"></button>
         </div>
 
         <div class="actions flex justify-between">
-            <button class="cursor-pointer rounded bg-slate-500 px-4 py-2 text-white" @click="$emit('resetColor')">Reset</button>
-            <button class="cursor-pointer rounded bg-slate-500 px-4 py-2 text-white" @click="$emit('undoColor')">Undo</button>
-            <button class="cursor-pointer rounded bg-green-500 px-4 py-2 text-white" @click="$emit('submitColors')">Submit</button>
+            <button class="cursor-pointer rounded bg-slate-500 px-4 py-2 text-white disabled:bg-slate-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('resetColor')">Reset</button>
+            <button class="cursor-pointer rounded bg-slate-500 px-4 py-2 text-white disabled:bg-slate-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('undoColor')">Undo</button>
+            <button class="cursor-pointer rounded bg-green-500 px-4 py-2 text-white disabled:bg-green-500/50 disabled:cursor-not-allowed" :disabled="game.value.status != 'playing'" @click="$emit('submitColors')">Submit</button>
         </div>
     </section>
 </template>
