@@ -15,7 +15,7 @@ function createDefaultProfile(): Profile {
   };
 }
 
-function createDefaultGame(playerName: string): Game {
+export function createDefaultGame(playerName: string): Game {
   return {
     player: playerName,
     score: 0,

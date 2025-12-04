@@ -1,5 +1,5 @@
 import type { Code, Color, Feedback } from "../types"
-import { useLocalStorage } from "./useLoacalStorage"
+import { createDefaultGame, useLocalStorage } from "./useLoacalStorage"
 
 export function useMastermind() {
 

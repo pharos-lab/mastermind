@@ -30,6 +30,8 @@
                 @submitColors="mastermind.submitColors"
             />
 
+            
+
             <Board :game="mastermind.game" />
         </div>
     </div>

@@ -35,13 +35,47 @@
         </div> -->
 
         <div v-if="game.value.status" class="border-t pt-4">
-            <div class="text-center">
-                <p v-if="game.value.status === 'won'" class="text-green-600 font-bold">
+            <div class="flex gap-2 justify-center items-center">
+                <p v-if="game.value.status === 'won'" class="text-green-600 font-bold flex gap-2">
                     🎉 Victoire !
                 </p>
-                <p v-else-if="game.value.status === 'lost'" class="text-red-600 font-bold">
+                <p v-else-if="game.value.status === 'lost'" class="text-red-600 font-bold flex gap-2">
                     😔 Défaite
                 </p>
+
+                <Button 
+                    v-if="game.value.status != 'playing'" 
+                    variant="outline" 
+                    class="border-green-500 hover:bg-green-100"
+                    @click="game.value = createDefaultGame(profile.name)"
+                >
+                    Nouvelle partie
+                </Button>
+
+                <Dialog v-else>
+                    <DialogTrigger>
+                        <Button variant="outline">Abandonner</Button>
+                    </DialogTrigger>
+
+                    <DialogContent>
+                        <DialogTitle>Abandonner la partie</DialogTitle>
+
+                        <p>Êtes-vous sûr de vouloir abandonner la partie en cours ?</p>
+
+                        <div class="flex gap-2 justify-center">
+
+                            <DialogClose>
+                                <Button>Annuler</Button>
+                            </DialogClose>
+                            
+                            <DialogClose>
+                                <Button variant="destructive" @click="game.value = createDefaultGame(profile.name)">
+                                    Abandonner
+                                </Button>
+                            </DialogClose>
+                        </div>
+                    </DialogContent>
+                </Dialog>
             </div>
         </div>
 
@@ -68,6 +102,7 @@ import type { Profile, Game } from '../types'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogClose } from './ui/dialog';
 import { Button } from './ui/button';
 import type { Ref } from 'vue';
+import { createDefaultGame } from '@/utils/useLoacalStorage';
 
 interface Props {
     profile: Profile;
