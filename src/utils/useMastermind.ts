@@ -93,7 +93,7 @@ export function useMastermind() {
           }
         };
       
-        storage.game.value.attempts.push(attempt);
+        storage.game.value.attempts.unshift(attempt);
         // storage.game.value.currentAttemptIndex++;
       
         // if (feedback.exactMatches === storage.game.value.code.length) {
@@ -110,6 +110,8 @@ export function useMastermind() {
       
         // Réinitialiser la tentative actuelle
         storage.game.value.currentAttempt = [];
+        
+        console.log(feedback);
         
         return true;
       }

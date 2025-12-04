@@ -1,5 +1,5 @@
 <template>
-    <section class="info order-1 p-4 ring ring-slate-500 shadow-lg rounded-lg">
+    <section class="info order-1 p-4 ring ring-slate-500/50 shadow-lg rounded-lg">
         <div class="grid grid-cols-2 gap-4 mb-4">
             <div class="text-center">
                 <p class="text-sm text-slate-600">Joueur</p>

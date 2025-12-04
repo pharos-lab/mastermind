@@ -1,5 +1,5 @@
 <template>
-    <section class="commands order-3 lg:order-2 lg:order-none lg:row-start-2 p-4 ring ring-slate-500 shadow-lg rounded-lg space-y-8">
+    <section class="commands order-3 lg:order-2 lg:order-none lg:row-start-2 p-4 ring ring-slate-500/50 shadow-lg rounded-lg space-y-8">
         <div class="colors flex gap-2 justify-between">
             <button class="size-6 lg:size-10 bg-red-500 rounded cursor-pointer" @click="$emit('addColor', 'red')"></button>
             <button class="size-6 lg:size-10 bg-orange-500 rounded cursor-pointer" @click="$emit('addColor', 'orange')"></button>

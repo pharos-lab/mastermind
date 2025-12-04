@@ -39,18 +39,14 @@
 import Board from './components/Board.vue';
 import Commands from './components/Commands.vue';
 import Info from './components/Info.vue';
-import type { Code } from './types';
 import { useMastermind } from './utils/useMastermind';
 
 
 const mastermind = useMastermind()
 const secretCode = mastermind.generateSecretCode()
 
-const attempt = ['red', 'orange', 'yellow', 'green'] as Code
+console.log(secretCode);
 
-const feedback = mastermind.calculateFeedback(secretCode, attempt)
-
-console.log(secretCode, attempt, feedback);
 </script>
 
 <style scoped>
