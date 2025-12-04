@@ -34,9 +34,9 @@ import { useMastermind } from './utils/useMastermind';
 
 
 const mastermind = useMastermind()
+const secretCode = mastermind.generateSecretCode()
 
-
-console.log(mastermind);
+console.log(secretCode);
 </script>
 
 <style scoped>
