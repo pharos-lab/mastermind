@@ -26,7 +26,7 @@
 
             </div>
 
-            <div class="see-code size-13 flex items-center justify-center bg-emerald-500/50">
+            <div class="see-code size-12 flex items-center justify-center bg-emerald-500/50">
                 <Eye 
                     v-show="!game.value.showCode" 
                     class="text-white cursor-pointer size-8" 

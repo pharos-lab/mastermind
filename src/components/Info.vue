@@ -102,7 +102,6 @@ import type { Profile, Game } from '../types'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogClose } from './ui/dialog';
 import { Button } from './ui/button';
 import type { Ref } from 'vue';
-import { createDefaultGame } from '@/utils/useLoacalStorage';
 
 interface Props {
     profile: Profile;
