@@ -1,50 +1,50 @@
 <template>
-    <section class="commands order-3 lg:order-2 lg:order-none lg:row-start-2 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+    <section class="commands order-3 lg:order-2 lg:order-none lg:row-start-2 bg-white rounded-xl shadow-sm border overflow-hidden">
         <!-- Header -->
         <div class="p-4 bg-gradient-to-r from-violet-50 to-purple-50 border-b border-slate-200">
             <h3 class="text-sm font-semibold text-slate-800">Commandes</h3>
             <p class="text-xs text-slate-500 mt-1">Sélectionnez vos couleurs</p>
         </div>
 
-        <div class="p-4 space-y-6">
+        <div class="px-4 py-2 space-y-4">
             <!-- Palette de couleurs -->
             <div>
                 <label class="text-xs font-medium text-slate-600 uppercase tracking-wider block mb-3">
                     Palette
                 </label>
-                <div class="grid grid-cols-3 lg:grid-cols-6 gap-3">
+                <div class="grid grid-cols-3 lg:grid-cols-6 justify-center">
                     <button 
-                        class="aspect-square rounded-xl bg-red-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        class=" size-12 rounded-xl bg-red-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
                         :disabled="game.value.status != 'playing'" 
                         @click="$emit('addColor', 'red')"
                         aria-label="Rouge"
                     />
                     <button 
-                        class="aspect-square rounded-xl bg-orange-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        class="size-12 rounded-xl bg-orange-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
                         :disabled="game.value.status != 'playing'" 
                         @click="$emit('addColor', 'orange')"
                         aria-label="Orange"
                     />
                     <button 
-                        class="aspect-square rounded-xl bg-yellow-400 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        class="size-12 rounded-xl bg-yellow-400 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
                         :disabled="game.value.status != 'playing'" 
                         @click="$emit('addColor', 'yellow')"
                         aria-label="Jaune"
                     />
                     <button 
-                        class="aspect-square rounded-xl bg-green-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        class="size-12 rounded-xl bg-green-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
                         :disabled="game.value.status != 'playing'" 
                         @click="$emit('addColor', 'green')"
                         aria-label="Vert"
                     />
                     <button 
-                        class="aspect-square rounded-xl bg-blue-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        class="size-12 rounded-xl bg-blue-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
                         :disabled="game.value.status != 'playing'" 
                         @click="$emit('addColor', 'blue')"
                         aria-label="Bleu"
                     />
                     <button 
-                        class="aspect-square rounded-xl bg-purple-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        class="size-12 rounded-xl bg-purple-500 hover:scale-110 active:scale-95 transition-transform shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100" 
                         :disabled="game.value.status != 'playing'" 
                         @click="$emit('addColor', 'purple')"
                         aria-label="Violet"
