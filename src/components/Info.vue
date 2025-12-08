@@ -1,7 +1,7 @@
 <template>
     <section class="info order-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
         <!-- Header avec nom -->
-        <div class="p-3 bg-gradient-to-r from-sky-50 to-blue-50 border-b border-slate-200">
+        <div class="p-2 lg:p-3 bg-gradient-to-r from-sky-50 to-blue-50 border-b border-slate-200">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 bg-sky-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
@@ -9,7 +9,7 @@
                     </div>
                     <div>
                         <p class="text-sm font-semibold text-slate-800">{{ profile.value.name }}</p>
-                        <p class="text-xs text-slate-500">Joueur</p>
+                        <p class="text-xs text-slate- hidden lg:block">Joueur</p>
                     </div>
                 </div>
                 <Dialog>
@@ -33,27 +33,28 @@
         </div>
 
         <!-- Partie en cours -->
-        <div class="p-3 space-y-2">
+        <div class="p-2 lg:p-3">
             <!-- Stats en jeu -->
             <div class="grid grid-cols-2 gap-2">
-                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-2 rounded-lg border border-amber-200">
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 px-3 py-1 lg:p-2 rounded-lg border border-amber-200 flex justify-between items-center lg:block">
                     <p class="text-xs text-amber-700 font-medium">Score</p>
-                    <p class="text-xl font-bold text-amber-900">{{ game.value.score }}</p>
+                    <p class="lg:text-xl font-bold text-amber-900">{{ game.value.score }}</p>
                 </div>
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-2 rounded-lg border border-blue-200">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-1 lg:p-2 rounded-lg border border-blue-200 flex justify-between items-center lg:block">
                     <p class="text-xs text-blue-700 font-medium">Tentative</p>
-                    <p class="text-xl font-bold text-blue-900">
+                    <p class="lg:text-xl font-bold text-blue-900">
                         {{ game.value.currentAttemptIndex }}<span class="text-sm text-blue-600">/{{ game.value.maxAttempts }}</span>
                     </p>
                 </div>
             </div>
 
             <!-- Barre de progression -->
-            <div>
+            <div class="hidden lg:block mt-4">
                 <div class="flex justify-between text-xs text-slate-600 mb-1">
                     <span>Progression</span>
                     <span>{{ Math.round((game.value.currentAttemptIndex / game.value.maxAttempts) * 100) }}%</span>
                 </div>
+
                 <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
                     <div 
                         class="h-full transition-all duration-300 rounded-full"
@@ -65,7 +66,7 @@
         </div>
 
         <!-- Statut de fin / Abandonner -->
-        <div class="px-3 pb-3">
+        <div class="p-2 hidden lg:block">
             <div v-if="game.value.status !== 'playing'" 
                 class="p-3 rounded-lg text-center"
                 :class="game.value.status === 'won' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'"
