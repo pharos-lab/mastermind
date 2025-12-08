@@ -9,9 +9,9 @@ const GAME_KEY = 'mastermind_game';
 function createDefaultProfile(): Profile {
   return {
     name: 'John Doe',
-    // totalGames: 0,
-    // gamesWon: 0,
-    // gamesLost: 0,
+    totalGames: 0,
+    gamesWon: 0,
+    gamesLost: 0,
   };
 }
 
@@ -25,6 +25,7 @@ export function createDefaultGame(playerName: string): Game {
     status: 'playing',
     maxAttempts: 10,
     showCode: false,
+    currentAttemptIndex: 1
   };
 }
 

@@ -4,6 +4,7 @@ import { createDefaultGame, useLocalStorage } from "./useLoacalStorage"
 export function useMastermind() {
 
     const storage = useLocalStorage()
+    
     const AVAILABLE_COLORS: Color[] = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
     function initiate() {
@@ -105,28 +106,37 @@ export function useMastermind() {
             colorMatches: feedback.colorMatches,
           }
         };
-      
+
         storage.game.value.attempts.unshift(attempt);
       
         if (feedback.exactMatches === storage.game.value.code.length) {
           storage.game.value.status = 'won';
           // Calculer score bonus (plus de points si moins de tentatives)
-          const bonus = (storage.game.value.maxAttempts - storage.game.value.attempts.length) * 10;
+          const bonus = (storage.game.value.maxAttempts - storage.game.value.currentAttemptIndex) * 10;
           storage.game.value.score = 100 + bonus;
+          storage.profile.value.gamesWon++
+          storage.profile.value.totalGames++
+          storage.game.value.currentAttempt = [];
+          
+          return true;
         }
         // Vérifier défaite
         else if (storage.game.value.attempts.length == storage.game.value.maxAttempts) {
           storage.game.value.status = 'lost';
           storage.game.value.score = 0;
+          storage.profile.value.gamesLost++
+          storage.profile.value.totalGames++
+          storage.game.value.currentAttempt = [];
+
+          return true;
         }
       
         // Réinitialiser la tentative actuelle
+        storage.game.value.currentAttemptIndex++;
         storage.game.value.currentAttempt = [];
         
-        console.log(feedback);
-        
         return true;
-      }
+    }
 
     return { ...storage, addColor, undoColor, resetColor, generateSecretCode, calculateFeedback, submitColors, initiate, newGame, abandonGame }
 }

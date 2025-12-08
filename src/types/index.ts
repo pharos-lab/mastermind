@@ -4,9 +4,9 @@ export type Code = Color[]
 
 export interface Profile {
     name: string;
-    // totalGames: number;
-    // gamesWon: number;
-    // gamesLost: number;
+    totalGames: number;
+    gamesWon: number;
+    gamesLost: number;
 }
 
 export interface Game {
@@ -18,6 +18,7 @@ export interface Game {
     status: 'playing' | 'won' | 'lost' | '';
     maxAttempts: number;
     showCode: boolean
+    currentAttemptIndex: number;
 }
 
 export interface Attempt {

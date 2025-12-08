@@ -30,12 +30,12 @@
                         <div class="hidden lg:flex items-center gap-4 mr-4 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                             <div class="text-center">
                                 <p class="text-xs text-sky-100 font-medium">Parties</p>
-                                <p class=" font-bold text-white">{{ mastermind.profile.value.totalGames }}3</p>
+                                <p class=" font-bold text-white">{{ mastermind.profile.value.totalGames }}</p>
                             </div>
                             <div class="w-px h-8 bg-white/20"></div>
                             <div class="text-center">
                                 <p class="text-xs text-sky-100 font-medium">Victoires</p>
-                                <p class=" font-bold text-green-300">{{ mastermind.profile.value.gamesWon }}1</p>
+                                <p class=" font-bold text-green-300">{{ mastermind.profile.value.gamesWon }}</p>
                             </div>
                             <div class="w-px h-8 bg-white/20"></div>
                             <div class="text-center">
@@ -71,7 +71,7 @@
 
         <div class="mastermind flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] gap-4 p-4 lg:p-6 bg-slate-50 grow">
             <Info 
-                :profile="mastermind.profile.value" 
+                :profile="mastermind.profile" 
                 :game="mastermind.game"
                 @new-game="mastermind.newGame"
                 @abandon-game="mastermind.abandonGame"
@@ -80,7 +80,7 @@
             <Commands 
                 :game="mastermind.game" 
                 @addColor="mastermind.addColor" 
-                @resetColor="mastermind.resetGame" 
+                @resetColor="mastermind.resetColor" 
                 @undoColor="mastermind.undoColor" 
                 @submitColors="mastermind.submitColors"
             />
@@ -89,14 +89,12 @@
 
             <Board :game="mastermind.game" />
 
-            <Boardd :game="mastermind.game"></Boardd>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import Board from './components/Board.vue';
-import Boardd from './components/Boardd.vue';
 import Commands from './components/Commands.vue';
 import Info from './components/Info.vue';
 import { useMastermind } from './utils/useMastermind';

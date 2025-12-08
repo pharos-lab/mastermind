@@ -5,10 +5,10 @@
                 <div class="w-8"></div>
                 <div 
                     v-show="game.value.showCode" 
-                    class="code flex grow gap-8 justify-between items-center py-1 px-4"
+                    class="code flex grow gap-8 justify-between items-center py-2 px-4"
                 >
                     <div 
-                        class="color size-7 rounded-full" 
+                        class="color size-8 rounded-full" 
                         v-for="color in game.value.code" 
                         :class="getColorClass(color)"
                     >
@@ -18,7 +18,7 @@
 
                 <div 
                     v-show="!game.value.showCode" 
-                    class="code flex grow gap-8 justify-between items-center py-1 px-4"
+                    class="code flex grow gap-8 justify-between items-center py-2 px-4"
                 >
                     <div 
                         class="color size-8 rounded-full bg-slate-100 border border-slate-300 border-dashed" 
@@ -28,31 +28,31 @@
 
                 </div>
 
-                <div class="see-code size-11 flex items-center justify-center bg-emerald-500/50">
+                <div class="see-code w-11 flex items-center justify-center bg-emerald-500/50">
                     <Eye 
                         v-show="!game.value.showCode" 
-                        class="text-white cursor-pointer size-8" 
+                        class="text-white cursor-pointer size-7" 
                         @click="game.value.showCode = true"
                     />
 
                     <EyeOff 
                         v-show="game.value.showCode" 
-                        class="text-white cursor-pointer size-8"
+                        class="text-white cursor-pointer size-7"
                         @click="game.value.showCode = false"
                     />
                 </div>
             </div>
 
-            <div class="board border rounded-lg shadow-lg divide-y divide-slate-200 lg:w-96 bg-white">
+            <div class="board border rounded-lg shadow-lg divide-y divide-slate-200 lg:w-96 bg-white overflow-hidden">
 
                 <!-- NOT ATTEMPT YET -->
                 <div 
                     class="attempt flex" 
-                    v-for="n in (11 - game.value.attempts.length)"
-                    :class="{'border-b-sky-200': n === 11 - game.value.attempts.length}"
+                    v-for="n in (game.value.maxAttempts - game.value.currentAttemptIndex )"
+                    :class="{'border-b-sky-200': n === game.value.maxAttempts - game.value.currentAttemptIndex}"
                 >
                     <div class="attempt-index flex justify-center items-center font-semibold text-slate-400 w-8">
-                        {{ 13 - n }}
+                        {{ game.value.maxAttempts + 1 - n }}
                     </div>
 
                     <div class="code flex grow justify-between items-center py-2 px-4">
@@ -74,7 +74,7 @@
                 <!-- CURRENT ATTEMPT -->
                 <div class="attempt flex bg-sky-50 border-b-2 border-t-1 border-sky-200">
                     <div class="attempt-index flex justify-center items-center font-semibold text-sky-700 w-8">
-                        {{ game.value.attempts.length + 1 }}
+                        {{ game.value.currentAttemptIndex }}
                     </div>
 
                     <div class="code flex grow gap-2 justify-between items-center py-2 px-4">
