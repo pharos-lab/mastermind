@@ -1,5 +1,5 @@
 <template>
-    <section class="info order-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+    <section class="hidden lg:block info order-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
         <!-- Header avec nom -->
         <div class="p-2 lg:p-3 bg-gradient-to-r from-sky-50 to-blue-50 border-b border-slate-200">
             <div class="flex items-center justify-between">
