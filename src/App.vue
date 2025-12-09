@@ -46,16 +46,55 @@
                             </div>
                         </div>
 
-                        <!-- Bouton Règles -->
-                        <a 
-                            href="#" 
-                            class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg text-white font-medium text-sm transition-all border border-white/20 hover:border-white/30"
-                        >
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span class="hidden sm:inline">Règles</span>
-                        </a>
+                        <Popover>
+                            <!-- Bouton Règles -->
+                            <PopoverTrigger as-child>
+                                <button 
+                                    class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm 
+                                        rounded-lg text-white font-medium text-sm transition-all border border-white/20 
+                                        hover:border-white/30"
+                                >
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="hidden sm:inline">Règles</span>
+                                </button>
+                            </PopoverTrigger>
+
+                            <!-- Contenu du Popover -->
+                            <PopoverContent 
+                                class="w-80 p-4 space-y-3 text-sm leading-relaxed bg-white/80 backdrop-blur-xl 
+                                    rounded-xl shadow-xl border border-slate-200"
+                                align="end"
+                            >
+                                <h3 class="font-semibold text-slate-800 text-lg">Règles du Mastermind</h3>
+
+                                <p class="text-slate-700">
+                                    Le but du jeu est de deviner un code secret composé de 
+                                    <span class="font-medium">4 couleurs</span>.
+                                </p>
+
+                                <p class="text-slate-700">
+                                    À chaque tentative, vous choisissez une combinaison de couleurs.  
+                                    Le jeu vous donne ensuite des <span class="font-medium">indices</span> :
+                                </p>
+
+                                <ul class="list-disc list-inside text-slate-700 space-y-1">
+                                    <li><span class="font-semibold">● Noir :</span> bonne couleur <span class="font-medium">au bon emplacement</span>.</li>
+                                    <li><span class="font-semibold">○ Blanc :</span> bonne couleur <span class="font-medium">mais mauvais emplacement</span>.</li>
+                                </ul>
+
+                                <p class="text-slate-700">
+                                    Vous avez <span class="font-medium">{{ mastermind.game.value.maxAttempts }} tentatives</span> pour trouver le code exact.
+                                </p>
+
+                                <p class="text-slate-700">
+                                    Bonne chance !
+                                </p>
+                            </PopoverContent>
+                        </Popover>
+
 
                         <!-- Avatar
                         <div class="relative group cursor-pointer">
