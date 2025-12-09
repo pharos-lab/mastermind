@@ -8,7 +8,7 @@
                     class="code flex grow gap-8 justify-between items-center py-2 px-4"
                 >
                     <div 
-                        class="color size-8 rounded-full" 
+                        class="color size-8 xl:size-10 rounded-full" 
                         v-for="color in game.value.code" 
                         :class="getColorClass(color)"
                     >
@@ -21,7 +21,7 @@
                     class="code flex grow gap-8 justify-between items-center py-2 px-4"
                 >
                     <div 
-                        class="color size-8 rounded-full bg-slate-100 border border-slate-300 border-dashed" 
+                        class="color size-8 xl:size-10 rounded-full bg-slate-100 border border-slate-300 border-dashed" 
                         v-for="n in 4"
                     >
                     </div>
@@ -57,7 +57,7 @@
 
                     <div class="code flex grow justify-between items-center py-2 px-4">
                         <div 
-                            class="color size-8 rounded-full bg-slate-100 border border-dashed border-slate-300" 
+                            class="color size-8 xl:size-10 rounded-full bg-slate-100 border border-dashed border-slate-300" 
                             v-for="n in 4"
                         >
                         </div>
@@ -79,14 +79,14 @@
 
                     <div class="code flex grow gap-2 justify-between items-center py-2 px-4">
                         <div 
-                            class="color size-8 rounded-full" 
+                            class="color size-8 xl:size-10 rounded-full" 
                             v-for="color in game.value.currentAttempt" 
                             :class="getColorClass(color)"
                         >
                         </div>
 
                         <div 
-                            class="color size-8 rounded-full bg-white border border-dashed border-slate-300" 
+                            class="color size-8 xl:size-10 rounded-full bg-white border border-dashed border-slate-300" 
                             v-for="n in 4 - game.value.currentAttempt.length"
                         >
                         </div>
@@ -108,7 +108,7 @@
 
                     <div class="code flex grow gap-2 justify-between items-center py-2 px-4">
                         <div 
-                            class="color size-8 rounded-full" 
+                            class="color size-8 xl:size-10 rounded-full" 
                             v-for="color in attempt.code"
                             :class="getColorClass(color)"
                         >
