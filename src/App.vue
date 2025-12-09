@@ -57,13 +57,134 @@
                             <span class="hidden sm:inline">Règles</span>
                         </a>
 
-                        <!-- Avatar -->
+                        <!-- Avatar
                         <div class="relative group cursor-pointer">
                             <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur opacity-40 group-hover:opacity-70 transition"></div>
                             <div class="relative w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center text-white text-base font-bold shadow-xl ring-2 ring-white/50 hover:scale-110 transition-transform">
                                 {{ mastermind.profile.value.name.charAt(0).toUpperCase() }}
                             </div>
-                        </div>
+                        </div> -->
+
+                        <!-- Avatar avec popover -->
+                        <Popover>
+                            <PopoverTrigger as-child>
+                                <div class="relative group cursor-pointer">
+                                    <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur opacity-40 group-hover:opacity-70 transition"></div>
+                                    <div class="relative w-9 h-9 lg:w-10 lg:h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm lg:text-base font-bold shadow-xl ring-2 ring-white/50 hover:scale-110 transition-transform">
+                                        {{ mastermind.profile.value.name.charAt(0).toUpperCase() }}
+                                    </div>
+                                </div>
+                            </PopoverTrigger>
+                            <PopoverContent class="w-80 p-0 overflow-hidden" align="end">
+                                <!-- Profil -->
+                                <div class="bg-gradient-to-r from-sky-50 to-blue-50 p-3 border-b border-slate-200">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white font-bold">
+                                                {{ mastermind.profile.value.name.charAt(0).toUpperCase() }}
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-slate-800">{{ mastermind.profile.value.name }}</p>
+                                                <p class="text-xs text-slate-500">Joueur</p>
+                                            </div>
+                                        </div>
+                                        <Dialog>
+                                            <DialogTrigger>
+                                                <Edit class="w-4 h-4 text-sky-500 hover:text-sky-600 cursor-pointer" />
+                                            </DialogTrigger>
+                                            <DialogContent>
+                                                <DialogTitle>Modifier le nom</DialogTitle>
+                                                <input 
+                                                    type="text" 
+                                                    v-model="mastermind.profile.value.name" 
+                                                    class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                                                />
+                                                <DialogClose>
+                                                    <Button class="w-full mt-2">Valider</Button>
+                                                </DialogClose>
+                                            </DialogContent>
+                                        </Dialog>
+                                    </div>
+                                </div>
+
+                                <!-- Stats -->
+                                <div class="p-3">
+                                    <p class="text-xs font-semibold text-slate-500 uppercase mb-2">Statistiques</p>
+                                    <div class="grid grid-cols-3 gap-2 text-center">
+                                        <div class="bg-slate-50 p-2 rounded-lg">
+                                            <p class="text-lg font-bold text-slate-800">{{ mastermind.profile.value.totalGames }}</p>
+                                            <p class="text-xs text-slate-500">Parties</p>
+                                        </div>
+                                        <div class="bg-green-50 p-2 rounded-lg">
+                                            <p class="text-lg font-bold text-green-600">{{ mastermind.profile.value.gamesWon }}</p>
+                                            <p class="text-xs text-slate-500">Victoires</p>
+                                        </div>
+                                        <div class="bg-red-50 p-2 rounded-lg">
+                                            <p class="text-lg font-bold text-red-600">{{ mastermind.profile.value.gamesLost }}</p>
+                                            <p class="text-xs text-slate-500">Défaites</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 pt-3 border-t border-slate-200">
+                                        <div class="flex justify-between text-sm">
+                                            <span class="text-slate-600">Win rate</span>
+                                            <span class="font-bold text-slate-800">
+                                                {{ mastermind.profile.value.totalGames > 0 ? Math.round((mastermind.profile.value.gamesWon / mastermind.profile.value.totalGames) * 100) : 0 }}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Progression -->
+                                <div class="px-3 pb-3">
+                                    <p class="text-xs font-semibold text-slate-500 uppercase mb-2">Partie en cours</p>
+                                    <div class="flex justify-between text-xs text-slate-600 mb-1">
+                                        <span>Progression</span>
+                                        <span>{{ Math.round((mastermind.game.value.currentAttemptIndex / mastermind.game.value.maxAttempts) * 100) }}%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                                        <div 
+                                            class="h-full transition-all duration-300 rounded-full"
+                                            :class="mastermind.game.value.currentAttemptIndex >= mastermind.game.value.maxAttempts - 2 ? 'bg-red-500' : 'bg-sky-500'"
+                                            :style="{ width: `${(mastermind.game.value.currentAttemptIndex / mastermind.game.value.maxAttempts) * 100}%` }"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="border-t border-slate-200 p-3">
+                                    <div v-if="mastermind.game.value.status !== 'playing' && mastermind.game.value.status !== ''" 
+                                        class="mb-2 p-2 rounded-lg text-center text-sm font-bold"
+                                        :class="mastermind.game.value.status === 'won' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'"
+                                    >
+                                        {{ mastermind.game.value.status === 'won' ? '🎉 Victoire !' : '😔 Défaite' }}
+                                    </div>
+
+                                    <Button 
+                                        v-if="mastermind.game.value.status !== 'playing'"
+                                        @click="mastermind.newGame"
+                                        class="w-full bg-green-500 hover:bg-green-600 rounded text-white px-3 py-2"
+                                    >
+                                        🎮 Nouvelle partie
+                                    </Button>
+
+                                    <Dialog v-else>
+                                        <DialogTrigger as-child>
+                                            <Button variant="outline" class="w-full text-red-600 border-red-300 hover:bg-red-50">
+                                                🚫 Abandonner
+                                            </Button>
+                                        </DialogTrigger>
+                                        <DialogContent>
+                                            <DialogTitle>Abandonner la partie</DialogTitle>
+                                            <p class="text-sm text-slate-600">Êtes-vous sûr ? Cela comptera comme une défaite.</p>
+                                            <div class="flex gap-2 justify-end mt-4">
+                                                <DialogClose><Button variant="outline" size="sm">Annuler</Button></DialogClose>
+                                                <DialogClose><Button variant="destructive" size="sm" @click="mastermind.abandonGame">Abandonner</Button></DialogClose>
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
+                            </PopoverContent>
+                        </Popover>
                     </nav>
                 </div>
             </div>
@@ -98,6 +219,7 @@ import Board from './components/Board.vue';
 import Commands from './components/Commands.vue';
 import Info from './components/Info.vue';
 import { useMastermind } from './utils/useMastermind';
+import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
 
 
 const mastermind = useMastermind()

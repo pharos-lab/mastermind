@@ -93,7 +93,7 @@
                     </button>
                 </div>
                 <button 
-                    class="lg:hidden px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-slate-100 border border-slate-300" 
+                    class="lg:hidden px-3 py-1 lg:py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-slate-100 border border-slate-300" 
                     :disabled="game.value.status != 'playing'" 
                     @click="$emit('undoColor')"
                 >
