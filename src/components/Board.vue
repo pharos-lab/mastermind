@@ -123,7 +123,7 @@
                         >
                         </div>
                         <div 
-                            class="result size-4 rounded-full bg-white border" 
+                            class="result size-3 rounded-full bg-white border" 
                             v-for="colorMatch in attempt.feedback.colorMatches"
                         >
                         </div>

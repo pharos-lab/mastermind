@@ -152,24 +152,9 @@
 
                                 <!-- Actions -->
                                 <div class="border-t border-slate-200 p-3">
-                                    <div v-if="mastermind.game.value.status !== 'playing' && mastermind.game.value.status !== ''" 
-                                        class="mb-2 p-2 rounded-lg text-center text-sm font-bold"
-                                        :class="mastermind.game.value.status === 'won' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'"
-                                    >
-                                        {{ mastermind.game.value.status === 'won' ? '🎉 Victoire !' : '😔 Défaite' }}
-                                    </div>
-
-                                    <Button 
-                                        v-if="mastermind.game.value.status !== 'playing'"
-                                        @click="mastermind.newGame"
-                                        class="w-full bg-green-500 hover:bg-green-600 rounded text-white px-3 py-2"
-                                    >
-                                        🎮 Nouvelle partie
-                                    </Button>
-
-                                    <Dialog v-else>
+                                    <Dialog>
                                         <DialogTrigger as-child>
-                                            <Button variant="outline" class="w-full text-red-600 border-red-300 hover:bg-red-50">
+                                            <Button variant="outline" size="sm" class="w-full text-red-600 border-red-300 hover:bg-red-50">
                                                 🚫 Abandonner
                                             </Button>
                                         </DialogTrigger>
@@ -212,6 +197,49 @@
 
         </div>
     </div>
+
+    <!-- Dialog fin de partie -->
+    <Dialog :open="mastermind.game.value.status !== 'playing'">
+        <DialogContent>
+            <DialogTitle class="text-center text-2xl">
+                {{ mastermind.game.value.status === 'won' ? '🎉 Victoire !' : '😔 Défaite' }}
+            </DialogTitle>
+            
+            <div class="py-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t">
+                    <div class="text-center">
+                        <p class="text-sm text-slate-600">Score final</p>
+                        <p class="text-2xl font-bold text-amber-600">{{ mastermind.game.value.score }}</p>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-sm text-slate-600">Tentatives</p>
+                        <p class="text-2xl font-bold text-slate-800">{{ mastermind.game.value.currentAttemptIndex }}</p>
+                    </div>
+                </div>
+
+                <!-- Code secret révélé -->
+                <div class="bg-slate-50 p-4 rounded-lg">
+                    <p class="text-xs text-center text-slate-600 mb-2">Code secret</p>
+                    <div class="flex gap-2 justify-center">
+                        <div 
+                            v-for="(color, index) in mastermind.game.value.code"
+                            :key="index"
+                            class="w-10 h-10 rounded-full shadow-md"
+                            :class="getColorClass(color)"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="space-y-2">
+                <Button @click="mastermind.newGame" class="w-full bg-green-500 hover:bg-green-600 text-lg py-6">
+                    🎮 Rejouer
+                </Button>
+            </div>
+        </DialogContent>
+    </Dialog>
 </template>
 
 <script setup lang="ts">
@@ -220,6 +248,10 @@ import Commands from './components/Commands.vue';
 import Info from './components/Info.vue';
 import { useMastermind } from './utils/useMastermind';
 import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogClose } from './components/ui/dialog';
+import { Button } from './components/ui/button';
+import type { Color } from './types';
+import { Edit } from 'lucide-vue-next';
 
 
 const mastermind = useMastermind()
@@ -228,6 +260,18 @@ mastermind.initiate()
 
 console.log(mastermind.game.value.code);
 
+const colorMap: Record<Color, string> = {
+    red: 'bg-red-500',
+    orange: 'bg-orange-500',
+    yellow: 'bg-yellow-400',
+    green: 'bg-green-500',
+    blue: 'bg-blue-500',
+    purple: 'bg-purple-500',
+};
+
+function getColorClass(color: Color): string {
+    return colorMap[color] || 'bg-slate-200';
+}
 
 </script>
 
